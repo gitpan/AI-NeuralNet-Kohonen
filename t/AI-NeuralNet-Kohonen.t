@@ -100,24 +100,29 @@ isa_ok($net->{map}->[ $bmu[0]->[1] ]->[ $bmu[0]->[2] ],
 	is( $qerror, $net->quantise_error([ [1,0,0] ]));
 }
 
-# Input file tests\n";
-$net = AI::NeuralNet::Kohonen->new(
-	epochs	=> 0,
-	input_file => $dir.'ex.dat',
-	epoch_end	=> sub {print"."},
-	train_end	=> sub {print"\n"},
-);
-isa_ok( $net,'AI::NeuralNet::Kohonen');
-isa_ok( $net->{input}, 'ARRAY');
-is( scalar @{$net->{input}}, 3840);
-is( $net->{map_dim_x}, 19);
-is ($net->{input}->[$#{$net->{input}}]->{values}->[4], 406.918518);
-is( ref $net->{input}->[$#{$net->{input}}]->{values}, 'ARRAY');
-diag "Training on a big file: this is SLOW, sorry\n";
-is($net->train,1);
-my $filename = substr(time,0,8);
-ok($net->save_file($filename),"Saved file as ".$filename);
-ok(unlink($filename),'Unlinked test file '.$filename);
+
+SKIP: {
+	skip 'Lost the input file',9;
+
+	# Input file tests\n";
+	$net = AI::NeuralNet::Kohonen->new(
+		epochs	=> 0,
+		input_file => $dir.'ex.dat',
+		epoch_end	=> sub {print"."},
+		train_end	=> sub {print"\n"},
+	);
+	isa_ok( $net,'AI::NeuralNet::Kohonen');
+	isa_ok( $net->{input}, 'ARRAY');
+	is( scalar @{$net->{input}}, 3840);
+	is( $net->{map_dim_x}, 19);
+	is ($net->{input}->[$#{$net->{input}}]->{values}->[4], 406.918518);
+	is( ref $net->{input}->[$#{$net->{input}}]->{values}, 'ARRAY');
+	diag "Training on a big file: this is SLOW, sorry\n";
+	is($net->train,1);
+	my $filename = substr(time,0,8);
+	ok($net->save_file($filename),"Saved file as ".$filename);
+	ok(unlink($filename),'Unlinked test file '.$filename);
+}
 
 sub BAIL_OUT {
 	diag "BAIL_OUT:",@_? @_ : "";

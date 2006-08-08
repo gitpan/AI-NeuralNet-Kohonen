@@ -1,7 +1,7 @@
 package AI::NeuralNet::Kohonen;
 
 use vars qw/$VERSION/;
-$VERSION = 0.141;	# 05 May 2006 POD and tar dist
+$VERSION = 0.142;	# 08 August 2006 test lost input file
 
 =head1 NAME
 

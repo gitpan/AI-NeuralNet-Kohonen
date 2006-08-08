@@ -8,6 +8,9 @@ It's not fast - it's illustrative.
 
 In fact, it's slow: but it's illustrative....
 
+It could be improved to use Perl Data Language (PDL), XS or C, 
+but then it's be reworking code that already exists open-source.
+
 INSTALLATION
 
 To install this module type the following:

@@ -1,5 +1,9 @@
 Revision history for Perl extension AI::NeuralNet::Kohonen.
 
+0.142	08 August 2006 14:56
+	Forgot to include the .dat test file in previous version
+	Can't find it now. Updated tests to cope :(
+
 0.141	Fri May 05 20:19:00 2006 
 	Repacked 
 
